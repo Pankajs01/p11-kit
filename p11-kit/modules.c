@@ -797,7 +797,7 @@ initialize_registered_inlock_reentrant (void)
 	rv = load_registered_modules_unlocked ();
 	if (rv == CKR_OK) {
 		p11_dict_iterate (gl.unmanaged_by_funcs, &iter);
-		while (rv == CKR_OK && p11_dict_next (&iter, NULL, (void **)&mod)) {
+		while (p11_dict_next (&iter, NULL, (void **)&mod)) {
 
 			/* Skip all modules that aren't registered or enabled */
 			if (mod->name == NULL || !is_module_enabled_unlocked (mod->name, mod->config))
